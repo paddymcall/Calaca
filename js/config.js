@@ -19,9 +19,9 @@
  */
 
 var CALACA_CONFIGS = {
-	url: "",
-	index_name: "",
-	type: "",
-	size: 10,
+	url: "http://localhost:9200",
+	index_name: "saritindex",
+	type: "element",
+	size: 20,
 	search_delay: 500
 }
