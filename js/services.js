@@ -24,7 +24,7 @@ Calaca.factory('calacaService', ['$q', 'esFactory', '$location', function($q, el
             deferred.resolve({ timeTook: 0, hitsCount: 0, hits: [] });
             return deferred.promise;
         }
-	console.log(query);
+	// console.log(query);
 	var requestBody = {
                 "index": CALACA_CONFIGS.index_name,
                 "type": CALACA_CONFIGS.type,
@@ -59,13 +59,13 @@ Calaca.factory('calacaService', ['$q', 'esFactory', '$location', function($q, el
 		    }
                 }
         };
-	console.log(requestBody);
+	// console.log(requestBody);
         client.search(requestBody).then(function(result) {
 
                 var i = 0, hitsIn, hitsOut = [], source;
                 hitsIn = (result.hits || {}).hits || [];
             for(;i < hitsIn.length; i++){
-		console.log(hitsIn[i]);
+		//console.log(hitsIn[i]);
                     source = hitsIn[i]._source;
                     source._id = hitsIn[i]._id;
                     source._index = hitsIn[i]._index;
@@ -77,7 +77,7 @@ Calaca.factory('calacaService', ['$q', 'esFactory', '$location', function($q, el
 		     }
                     hitsOut.push(source);
             }
-	    console.log(hitsOut);
+	    //console.log(hitsOut);
                 deferred.resolve({ timeTook: result.took, hitsCount: result.hits.total, hits: hitsOut });
         }, deferred.reject);
 

@@ -20,7 +20,8 @@
 
 var CALACA_CONFIGS = {
 	url: "http://localhost:9200",
-	index_name: "saritindex",
+    // multiple inices: index_name: "mymess,saritindex",
+    index_name: "mymess",
 	type: "element",
 	size: 20,
 	search_delay: 500
