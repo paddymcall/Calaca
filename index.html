@@ -42,7 +42,7 @@
 	<ul>
 	  <li ng-if="result.sysId">SysID: {{result.sysId}}</li>
 	  <li ng-if="result.revision">Revision: {{result.revision}}</li>
-	  <li ng-if="result.path">Path: <a href="http://localhost:8080/read/{{result.revision}}/path/{{result.path}}">{{result.path}}</a></li>
+	  <li ng-if="result.path">Path: <a href="http://localhost:8080/{{ result._index }}/{{result.revision}}/path{{result.path}}/">{{result.path}}</a></li>
 	  <li ng-if="result.lnum">Line: <a href="http://localhost:8080/read/{{result.revision}}/line/{{result.lnum}}">{{result.lnum}}</a></li>
 	  <li ng-if="result.offset">Offset: <a href="http://localhost:8080/read/{{result.revision}}/pos/{{result.offset}}">{{result.offset}}</a></li></li>
 	  <li ng-if="result.score">Score: {{result._score}}</li>
