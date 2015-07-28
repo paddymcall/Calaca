@@ -33,7 +33,7 @@ Calaca.controller('calacaCtrl', ['calacaService', '$scope', '$location', functio
         }
 
     $scope.initialSearch = function(mode) {
-	if ($location.search() && $location.search().query.length > 0) {
+	if (Object.keys($location.search).length != 0 && $location.search().query && $location.search().query.length > 0) {
 	    $scope.query=$location.search().query;
 	    if ($location.search().offset) {
 		// make sure it's a number, defaulting to 0
