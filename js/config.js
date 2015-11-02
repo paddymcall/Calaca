@@ -19,10 +19,10 @@
  */
 
 var CALACA_CONFIGS = {
-	url: "http://localhost:9200",
+	url: "http://sarit.rdorte.org:8888",
     // multiple inices: index_name: "mymess,saritindex",
-    index_name: "mymess",
+    index_name: "saritindex",
 	type: "element",
-	size: 20,
+	size: 50,
 	search_delay: 500
 }
