@@ -1,7 +1,18 @@
 #+TITLE: Calaca for SARIT
 
 This is an adaptation of [[https://github.com/romansanchez/Calaca][Calaca]] to search the [[https://github.com/sarit/SARIT-corpus][SARIT library]] with
-[[https://www.elastic.co/products/elasticsearch][Elasticsearch]].
+[[https://www.elastic.co/products/elasticsearch][elasticsearch]].
+
+It presupposes a running instance of elasticsearch, that was fed data
+similar to what results from running the XSLT in
+https://github.com/paddymcall/Stylesheets/tree/master/profiles/sarit/jsonElastic
+on the SARIT library.
+
+* Installation
+
+#+BEGIN_SRC bash
+bin/plugin install paddymcall/calaca
+#+END_SRC
 
 * Changes vs. Calaca
 
@@ -17,6 +28,8 @@ Version as of <2016-06-20 Mon>.
 
 
 ** Modified files
+
+These are the main changes that are not local to a specific setup.
 
 1) file:./_site/js/app.js: add dependency to angular-sanitize
 2) file:./_site/js/services.js:
