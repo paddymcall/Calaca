@@ -29,7 +29,6 @@
     <p ng-show='paginationEnabled()' id='pagination-details'>Showing {{paginationLowerBound}} - {{paginationUpperBound}}</p>
   </section>
   <section class='results'>
-    <pre> {{ results }} </pre>
     <p class='no-results' ng-show='!results.length && !loading'>No Results</p>
     <article class='result' ng-repeat='result in results track by $id(result)'>
       <h2> {{result.author}}: {{result.title}}</h2>

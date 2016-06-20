@@ -32,6 +32,19 @@ Calaca.controller('calacaCtrl', ['calacaService', '$scope', '$location', functio
             }, CALACA_CONFIGS.search_delay);
         }
 
+    $scope.initialSearch = function(mode) {
+	if ($location.search().query && $location.search().query.length > 0) {
+	    $scope.query=$location.search().query;
+	    if ($location.search().offset) {
+		// make sure it's a number, defaulting to 0
+		$scope.offset= ~~$location.search().offset;
+	    } else {
+		$scope.offset= 0;
+	    }
+            $scope.search(mode);
+	}
+    }
+    
         //On search, reinitialize array, then perform search and load results
         $scope.search = function(m){
             $scope.results = [];
@@ -52,7 +65,10 @@ Calaca.controller('calacaCtrl', ['calacaService', '$scope', '$location', functio
         //Load search results into array
         $scope.loadResults = function(m) {
             results.search($scope.query, m, $scope.offset).then(function(a) {
-
+		// keep the location of the url up to date
+		$location.path($location.path()).search(
+		    {'query':$scope.query, 'offset':$scope.offset}
+		);
                 //Load results
                 var i = 0;
                 for(;i < a.hits.length; i++){
@@ -81,7 +97,6 @@ Calaca.controller('calacaCtrl', ['calacaService', '$scope', '$location', functio
         $scope.paginationEnabled = function() {
             return paginationTriggered ? true : false;
         };
-
 
     }]
 );
