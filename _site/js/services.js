@@ -24,8 +24,8 @@ Calaca.factory('calacaService', ['$q', 'esFactory', '$location', function($q, el
             deferred.resolve({ timeTook: 0, hitsCount: 0, hits: [] });
             return deferred.promise;
         }
-	console.log(query);
-	var requestBody = {
+
+        client.search({
                 "index": CALACA_CONFIGS.index_name,
                 "type": CALACA_CONFIGS.type,
                 "body": {
@@ -33,51 +33,22 @@ Calaca.factory('calacaService', ['$q', 'esFactory', '$location', function($q, el
                     "from": offset,
                     "query": {
                         "query_string": {
-			    "default_field" : "_all",
-                            "query": query,
-			    "default_operator" : "AND",
-			    "fields" : ["text","author^5","title^2"],
-			    "analyzer" : "sarit_analyzer",
-			    "analyze_wildcard" : true,
-			    "lowercase_expanded_terms" : false
+                            "query": query
                         }
-                    },
-		    "highlight": {
-			"pre_tags":["<em>"],
-			"post_tags":["</em>"],
-			"fields": {
-			    "text": {
-				"number_of_fragments" : 0
-			    },
-			    "author": {
-				"number_of_fragments" : 0
-			    },
-			    "title": {
-				"number_of_fragments" : 0
-			    }
-			}
-		    }
+                    }
                 }
-        };
-	console.log(requestBody);
-        client.search(requestBody).then(function(result) {
+        }).then(function(result) {
 
                 var i = 0, hitsIn, hitsOut = [], source;
                 hitsIn = (result.hits || {}).hits || [];
-            for(;i < hitsIn.length; i++){
-		console.log(hitsIn[i]);
+                for(;i < hitsIn.length; i++){
                     source = hitsIn[i]._source;
                     source._id = hitsIn[i]._id;
                     source._index = hitsIn[i]._index;
                     source._type = hitsIn[i]._type;
                     source._score = hitsIn[i]._score;
-		    if (hitsIn[i].highlight)
-		    {
-		      source._highlighted = hitsIn[i].highlight;
-		     }
                     hitsOut.push(source);
-            }
-	    console.log(hitsOut);
+                }
                 deferred.resolve({ timeTook: result.took, hitsCount: result.hits.total, hits: hitsOut });
         }, deferred.reject);
 
