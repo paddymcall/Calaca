@@ -1,0 +1,29 @@
+#+TITLE: Calaca for SARIT
+
+This is an adaptation of [[https://github.com/romansanchez/Calaca][Calaca]] to search the [[https://github.com/sarit/SARIT-corpus][SARIT library]] with
+[[https://www.elastic.co/products/elasticsearch][Elasticsearch]].
+
+* Changes vs. Calaca
+
+** Add highlighting
+
+Needs angular-sanitize:
+
+#+BEGIN_SRC bash
+bower install  angular-sanitize#1.2.26
+#+END_SRC
+
+Version as of <2016-06-20 Mon>.
+
+
+** Modified files
+
+1) file:./_site/js/app.js: add dependency to angular-sanitize
+2) file:./_site/js/services.js:
+   1) tune search options in query
+   2) add highlight commands
+   3) add highlight field into result that is passed back to angular
+3) file:./_site/index.html:
+   1) include angular-sanitize
+   2) configure results to show highlighted fields and some statistics
+   3) add extra css

@@ -33,9 +33,33 @@ Calaca.factory('calacaService', ['$q', 'esFactory', '$location', function($q, el
                     "from": offset,
                     "query": {
                         "query_string": {
-                            "query": query
+			    "default_field" : "text,author,title",
+                            "query": query,
+			    "default_operator" : "AND",
+			    "fields" : ["text",
+					"author^5",
+					"title^2"
+				       ],
+			    "analyzer" : "sarit_analyzer",
+			    "analyze_wildcard" : true,
+			    "lowercase_expanded_terms" : false
                         }
-                    }
+                    },
+		    "highlight": {
+			"pre_tags":["<em>"],
+			"post_tags":["</em>"],
+			"fields": {
+			    "text": {
+				"number_of_fragments" : 0
+			    },
+			    "author": {
+				"number_of_fragments" : 0
+			    },
+			    "title": {
+				"number_of_fragments" : 0
+			    }
+			}
+		    }
                 }
         }).then(function(result) {
 
@@ -47,6 +71,10 @@ Calaca.factory('calacaService', ['$q', 'esFactory', '$location', function($q, el
                     source._index = hitsIn[i]._index;
                     source._type = hitsIn[i]._type;
                     source._score = hitsIn[i]._score;
+		    if (hitsIn[i].highlight)
+		    {
+		      source._highlighted = hitsIn[i].highlight;
+		     }
                     hitsOut.push(source);
                 }
                 deferred.resolve({ timeTook: result.took, hitsCount: result.hits.total, hits: hitsOut });
