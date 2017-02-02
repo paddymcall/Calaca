@@ -4,8 +4,11 @@ a {
 }
 
 /* sanskrit font  */
+@import url(http://fonts.googleapis.com/earlyaccess/notosansdevanagari.css);
+
 .sa-Deva, .sa {
-    font-family: "Martel Sans", sans-serif;
+    font-family: "Noto Sans Devanagari", sans-serif;
+    font-size: 120%;
 }
 
 .results {
@@ -24,7 +27,6 @@ div.metaInfo {
 ul.highlighted em {
     font-weight: bold;
     font-style: italic;
-    font-size: larger;
     color: blue;
 }
 
