@@ -40,3 +40,12 @@ These are the main changes that are not local to a specific setup.
    1) include angular-sanitize
    2) configure results to show highlighted fields and some statistics
    3) add extra css
+
+
+
+* Fonts
+
+- <2019-11-21 Thu> added Google’s Noto fonts, as per
+  instructions/downloads at
+  https://google-webfonts-helper.herokuapp.com/fonts/noto-sans?subsets=latin,devanagari,latin-ext
+
